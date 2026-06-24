@@ -135,6 +135,50 @@ Agent({
 
 > **Note**: You don't type the JavaScript code yourself - just tell Claude Code in natural language what you want to simulate, and it will invoke the agent for you.
 
+### Using Opus Model for More Thorough Analysis
+
+By default, agents run with the Sonnet model. For more comprehensive, thorough analysis, you can upgrade to the **Opus model with high effort**.
+
+**When to use Opus:**
+- Quarterly planning, budget justification, complex optimization scenarios, executive presentations, audit preparation
+- Need deeper analysis and more detailed recommendations
+- Want exhaustive reports with step-by-step details
+- Preparing for audits requiring comprehensive documentation
+- First-time analysis of a new environment
+
+**How to use Opus:**
+
+In your Claude Code conversation, specify the model before invoking the agent:
+
+```
+Switch to Opus model
+
+Then run the Exposure Impact Simulator with comprehensive ROI analysis
+```
+
+**Or use the direct command:**
+
+```
+/model opus
+
+Run the Exposure Impact Simulator with comprehensive ROI analysis
+```
+
+**What changes with Opus + high effort:**
+- ✅ More detailed analysis for each finding
+- ✅ Deeper context about why issues matter
+- ✅ More comprehensive recommendations
+- ✅ Additional cross-references between related items
+- ✅ More thorough validation steps
+- ✅ Longer, more detailed reports (expect 2-3x length)
+
+**Trade-offs:**
+- ⏱️ Takes longer to complete (2-5x slower than Sonnet)
+- 💰 Uses more tokens (higher cost)
+- 📄 Generates longer reports (more to read)
+
+**Recommendation:** Start with Sonnet for routine analysis, use Opus for quarterly deep-dives or audit preparation.
+
 ### What Happens When You Run It
 
 1. **Connects to Tenable** - Via MCP server or API credentials
