@@ -4,6 +4,12 @@
 
 The Exposure Impact Simulator helps security teams answer "what if" questions before remediating vulnerabilities. It predicts Asset Exposure Score (AES) and Cyber Exposure Score (CES) changes, enabling data-driven prioritization and resource optimization.
 
+## 🚀 New User? Start Here
+
+**[→ Installation & Usage Guide (INSTALL.md)](INSTALL.md)** - Complete walkthrough for installing and running this agent in Claude Code
+
+Already installed? Continue with Quick Start below.
+
 ---
 
 ## 🎯 What It Does
@@ -20,14 +26,26 @@ The Exposure Impact Simulator helps security teams answer "what if" questions be
 
 ### Installation
 
-This is a Claude Code agent. No installation required!
+See [INSTALL.md](INSTALL.md) for detailed installation instructions.
 
 ### Usage
 
-```
-In Claude Code:
-> Run the Tenable Exposure Impact Simulator
+Open Claude Code and use natural language:
 
+```
+Run the Tenable Exposure Impact Simulator
+```
+
+**Or be more specific:**
+```
+Use the exposure-impact-simulator to predict AES reduction 
+if I patch CVE-2024-1234 on prod-db-01
+```
+
+> **Note**: You interact with the agent using natural language in Claude Code. Claude Code automatically handles the agent invocation - you don't need to type any JavaScript code yourself.
+
+**Example conversation:**
+```
 Agent: Connected to your Tenable environment. What would you like to simulate?
 
 You: "Show me the top 5 highest-impact single fixes"
