@@ -1,6 +1,6 @@
 # Installation & Usage Guide
 
-Complete guide for installing and running the Tenable Exposure Impact Simulator in Claude Code.
+Complete guide for installing and running the Tenable Exposure Impact Simulator skill in Claude Code.
 
 ## What You Need
 
@@ -8,7 +8,7 @@ Complete guide for installing and running the Tenable Exposure Impact Simulator 
 2. **Tenable access** - MCP server configured or API credentials
 3. **Asset Exposure Scores (AES)** - Available in Tenable One/Exposure Management
 
-## What This Agent Does
+## What This Skill Does
 
 The Exposure Impact Simulator answers "what if" questions **before** you remediate vulnerabilities:
 
@@ -23,42 +23,42 @@ The Exposure Impact Simulator answers "what if" questions **before** you remedia
 
 ### Option 1: Install from Repository (Recommended)
 
-If this agent is available in the claude-gsd repository:
+If this skill is available in the claude-gsd repository:
 
 ```bash
 # From Claude Code prompt
 /install tenable-exposure-impact-simulator
 ```
 
-The agent will be automatically installed to `~/.claude/agents/`
+The skill will be automatically installed to `~/.claude/skills/tenable-exposure-impact-simulator/`
 
 ### Option 2: Manual Installation
 
 1. Clone or download this repository:
    ```bash
-   cd ~/.claude/agents
    git clone https://github.com/dpickenstenable/tenable-exposure-impact-simulator.git
    ```
 
-2. Copy the agent definition file:
+2. Copy the skill into your skills directory (copy the entire skill folder contents, not just SKILL.md, so any helper files are included):
    ```bash
-   cp tenable-exposure-impact-simulator/tenable-exposure-impact-simulator.md ~/.claude/agents/
+   mkdir -p ~/.claude/skills/tenable-exposure-impact-simulator
+   cp -r tenable-exposure-impact-simulator/tenable-exposure-impact-simulator/* ~/.claude/skills/tenable-exposure-impact-simulator/
    ```
 
 3. Verify installation:
    ```bash
-   ls ~/.claude/agents/tenable-exposure-impact-simulator.md
+   ls -la ~/.claude/skills/tenable-exposure-impact-simulator/SKILL.md
    ```
 
 ## Pre-Installation Setup
 
 ### Configure Tenable Access (Required)
 
-This agent requires Tenable One (Exposure Management) with Asset Exposure Scores enabled.
+This skill requires Tenable One (Exposure Management) with Asset Exposure Scores enabled.
 
 #### Option A: Using Tenable MCP Server (Easiest)
 
-If you have Tenable MCP server configured in `~/.claude/config.json`, the agent will automatically use it.
+If you have Tenable MCP server configured in `~/.claude/config.json`, the skill will automatically use it.
 
 Verify MCP connection:
 ```bash
@@ -90,7 +90,7 @@ source ~/.bashrc  # or ~/.zshrc
 
 ### Verify AES Data Availability
 
-The agent requires Asset Exposure Scores from Tenable One:
+The skill requires Asset Exposure Scores from Tenable One:
 
 ```bash
 # In Claude Code
@@ -99,9 +99,9 @@ Check if my Tenable environment has AES scores enabled
 
 If AES is not enabled, contact Tenable to enable Exposure Management features.
 
-## How to Run the Agent
+## How to Run the Skill
 
-The agent runs **inside Claude Code** conversations using natural language.
+The skill runs **inside Claude Code** conversations, invoked with `/tenable-exposure-impact-simulator` or with natural language.
 
 ### Step 1: Start Claude Code
 
@@ -110,9 +110,15 @@ Open Claude Code in your preferred interface:
 - **Desktop**: Launch the Claude Code app
 - **Web**: Visit claude.ai/code
 
-### Step 2: Run the Agent
+### Step 2: Run the Skill
 
-In the Claude Code conversation, use natural language:
+In the Claude Code conversation, invoke the skill directly:
+
+```
+/tenable-exposure-impact-simulator
+```
+
+**Or use natural language:**
 
 ```
 Run the Tenable Exposure Impact Simulator
@@ -125,19 +131,11 @@ Use the exposure-impact-simulator to predict AES reduction
 if I patch CVE-2024-1234 on prod-db-01
 ```
 
-**Behind the scenes**, Claude Code executes:
-```javascript
-Agent({
-  subagent_type: "Tenable Exposure Impact Simulator",
-  prompt: "Simulate AES impact of patching CVE-2024-1234 on prod-db-01"
-})
-```
-
-> **Note**: You don't type the JavaScript code yourself - just tell Claude Code in natural language what you want to simulate, and it will invoke the agent for you.
+> **Note**: You can invoke the skill with `/tenable-exposure-impact-simulator`, or simply describe what you want to simulate in natural language and Claude Code will run the skill for you.
 
 ### Using Opus Model for More Thorough Analysis
 
-By default, agents run with the Sonnet model. For more comprehensive, thorough analysis, you can upgrade to the **Opus model with high effort**.
+By default, Claude Code runs with the Sonnet model. For more comprehensive, thorough analysis, you can upgrade to the **Opus model with high effort**.
 
 **When to use Opus:**
 - Quarterly planning, budget justification, complex optimization scenarios, executive presentations, audit preparation
@@ -148,7 +146,7 @@ By default, agents run with the Sonnet model. For more comprehensive, thorough a
 
 **How to use Opus:**
 
-In your Claude Code conversation, specify the model before invoking the agent:
+In your Claude Code conversation, specify the model before invoking the skill:
 
 ```
 Switch to Opus model
@@ -206,9 +204,9 @@ Run the Tenable Exposure Impact Simulator to show me:
 3. What will our CES be after these fixes?
 ```
 
-**Step 3**: Agent execution (automatic)
+**Step 3**: Skill execution (automatic)
 ```
-Agent: Connected to Tenable One environment
+Skill: Connected to Tenable One environment
 ✓ Current CES: 487
 ✓ Assets: 437 total, 47 crown jewels (AES > 900)
 ✓ Vulnerabilities: 1,247 total (342 critical, 573 high)
@@ -375,7 +373,7 @@ Show:
 
 ### Impact Summary
 
-The agent shows predicted impact for each remediation:
+The skill shows predicted impact for each remediation:
 
 ```
 ┌─────────────────────────────────────────────────┐
@@ -474,19 +472,19 @@ Projected target achievement: Week 11
 
 ## Troubleshooting
 
-### "Agent not found" or "Unknown subagent_type"
+### "Skill not found" or "Unknown skill"
 
-**Problem**: Agent isn't installed correctly
+**Problem**: Skill isn't installed correctly
 
 **Solution**:
 ```bash
 # Verify installation
-ls -la ~/.claude/agents/tenable-exposure-impact-simulator.md
+ls -la ~/.claude/skills/tenable-exposure-impact-simulator/SKILL.md
 
 # If missing, reinstall
-cd ~/.claude/agents
 git clone https://github.com/dpickenstenable/tenable-exposure-impact-simulator.git
-cp tenable-exposure-impact-simulator/tenable-exposure-impact-simulator.md .
+mkdir -p ~/.claude/skills/tenable-exposure-impact-simulator
+cp -r tenable-exposure-impact-simulator/tenable-exposure-impact-simulator/* ~/.claude/skills/tenable-exposure-impact-simulator/
 ```
 
 ### "Tenable API Authentication Failed"
@@ -504,9 +502,9 @@ cp tenable-exposure-impact-simulator/tenable-exposure-impact-simulator.md .
 **Problem**: Your Tenable instance doesn't have Exposure Management enabled
 
 **Solution**:
-- This agent requires Tenable One (Exposure Management)
+- This skill requires Tenable One (Exposure Management)
 - Contact your Tenable account team to enable AES scoring
-- Alternatively, use traditional vulnerability prioritization agents
+- Alternatively, use traditional vulnerability prioritization tools
 
 ### "No vulnerabilities found for asset"
 
@@ -525,7 +523,7 @@ cp tenable-exposure-impact-simulator/tenable-exposure-impact-simulator.md .
 1. Check confidence level - low confidence = higher variance
 2. After remediations, compare predicted vs actual AES
 3. Provide feedback: "Prediction was off by X%"
-4. Agent learns from feedback to improve future predictions
+4. The skill learns from feedback to improve future predictions
 
 ### Optimization taking too long
 
@@ -658,7 +656,7 @@ Send to #security-ops channel every Monday 9 AM
 - ✅ Credentials read from environment variables or MCP config
 - ✅ Used only during execution, never logged
 - ✅ All API calls use HTTPS/TLS encryption
-- ✅ Read-only access - agent never modifies data
+- ✅ Read-only access - skill never modifies data
 
 ### Best Practices
 
@@ -700,7 +698,7 @@ Send to #security-ops channel every Monday 9 AM
 ## Common Questions
 
 **Q: How accurate are the predictions?**
-A: High-confidence predictions are typically ±5%. Accuracy improves as the agent learns from your remediation patterns.
+A: High-confidence predictions are typically ±5%. Accuracy improves as the skill learns from your remediation patterns.
 
 **Q: Can I simulate patching across multiple assets?**
 A: Yes! Ask for bulk simulations: "Simulate patching CVE-2024-1234 across all affected assets"
@@ -720,6 +718,6 @@ A: CES weights high-AES assets more heavily (3x for crown jewels vs. 0.5x for lo
 
 1. Set up Tenable access (required)
 2. Verify AES data is available
-3. Open Claude Code and say: `"Run the Tenable Exposure Impact Simulator"`
+3. Open Claude Code and run: `/tenable-exposure-impact-simulator` (or say "Run the Tenable Exposure Impact Simulator")
 
 Start predicting and optimizing your remediation impact!
