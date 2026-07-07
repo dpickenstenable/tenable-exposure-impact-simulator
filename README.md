@@ -6,7 +6,7 @@ The Exposure Impact Simulator helps security teams answer "what if" questions be
 
 ## 🚀 New User? Start Here
 
-**[→ Installation & Usage Guide (INSTALL.md)](INSTALL.md)** - Complete walkthrough for installing and running this agent in Claude Code
+**[→ Installation & Usage Guide (INSTALL.md)](INSTALL.md)** - Complete walkthrough for installing and running this skill in Claude Code
 
 Already installed? Continue with Quick Start below.
 
@@ -30,8 +30,13 @@ See [INSTALL.md](INSTALL.md) for detailed installation instructions.
 
 ### Usage
 
-Open Claude Code and use natural language:
+Open Claude Code and invoke the skill:
 
+```
+/tenable-exposure-impact-simulator
+```
+
+**Or use natural language:**
 ```
 Run the Tenable Exposure Impact Simulator
 ```
@@ -42,11 +47,11 @@ Use the exposure-impact-simulator to predict AES reduction
 if I patch CVE-2024-1234 on prod-db-01
 ```
 
-> **Note**: You interact with the agent using natural language in Claude Code. Claude Code automatically handles the agent invocation - you don't need to type any JavaScript code yourself.
+> **Note**: You invoke the skill in Claude Code with `/tenable-exposure-impact-simulator`, or simply describe what you want in natural language and Claude Code will run the skill for you.
 
 **Example conversation:**
 ```
-Agent: Connected to your Tenable environment. What would you like to simulate?
+Skill: Connected to your Tenable environment. What would you like to simulate?
 
 You: "Show me the top 5 highest-impact single fixes"
 ```
@@ -86,7 +91,7 @@ You: "Show me the top 5 highest-impact single fixes"
 
 ### AES Estimation Algorithm
 
-The agent uses a **weighted heuristic model** that factors in:
+The skill uses a **weighted heuristic model** that factors in:
 
 - **VPR Score** - Vulnerability Priority Rating (base weight)
 - **Severity** - Critical (2.0x), High (1.5x), Medium (1.0x), Low (0.5x)
@@ -238,7 +243,7 @@ CES Trajectory:
 
 ### Tenable API
 
-The agent connects to Tenable via:
+The skill connects to Tenable via:
 
 **Method 1: MCP Server (Recommended)**
 - Requires Tenable MCP Server running
@@ -269,7 +274,7 @@ The weighted heuristic model is calibrated from:
 
 ### Future ML Enhancement
 
-The agent collects remediation event data:
+The skill collects remediation event data:
 ```json
 {
   "before_state": {"aes": 948, "vuln_count": 47},
@@ -327,7 +332,7 @@ Vulnerabilities resolved: 892 critical/high
 
 ## 🔒 Security & Privacy
 
-- **Read-Only**: Agent never modifies Tenable data
+- **Read-Only**: Skill never modifies Tenable data
 - **No Credentials Stored**: Uses environment variables or MCP Server
 - **Local Processing**: All calculations run locally
 - **No External Calls**: Simulation runs entirely on your data
@@ -336,8 +341,8 @@ Vulnerabilities resolved: 892 critical/high
 
 ## 📞 Support & Documentation
 
-- **Full Agent Code**: `tenable-exposure-impact-simulator.md`
-- **Algorithm Details**: See agent documentation
+- **Full Skill Definition**: `tenable-exposure-impact-simulator/SKILL.md`
+- **Algorithm Details**: See skill documentation
 - **Tenable API Docs**: https://developer.tenable.com/
 
 ---
@@ -350,7 +355,7 @@ MIT License - See LICENSE file
 
 ## 🤝 Contributing
 
-This agent is part of the Tenable CyberAgents Exchange. Contributions welcome!
+This skill is part of the Tenable CyberAgents Exchange. Contributions welcome!
 
 1. Fork the repository
 2. Make your changes
