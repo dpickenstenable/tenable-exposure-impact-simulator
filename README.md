@@ -4,14 +4,6 @@
 
 The Exposure Impact Simulator helps security teams answer "what if" questions before remediating vulnerabilities. It predicts Asset Exposure Score (AES) and Cyber Exposure Score (CES) changes, enabling data-driven prioritization and resource optimization.
 
-## 🚀 New User? Start Here
-
-**[→ Installation & Usage Guide (INSTALL.md)](INSTALL.md)** - Complete walkthrough for installing and running this skill in Claude Code
-
-Already installed? Continue with Quick Start below.
-
----
-
 ## 🎯 What It Does
 
 - **Predict AES/CES Impact** - Know before you patch how much risk reduction you'll achieve
@@ -26,7 +18,23 @@ Already installed? Continue with Quick Start below.
 
 ### Installation
 
-See [INSTALL.md](INSTALL.md) for detailed installation instructions.
+Claude Code skills are installed by copying the skill into `~/.claude/skills/<skill-name>/` so that `~/.claude/skills/<skill-name>/SKILL.md` exists.
+
+**Prerequisites:** [Claude Code](https://claude.com/claude-code) and Tenable One (Exposure Management) access via the Tenable MCP server or API keys. See [Integration](#-integration) below for configuring Tenable access and environment variables.
+
+```bash
+# 1. Clone this repository
+git clone https://github.com/dpickenstenable/tenable-exposure-impact-simulator.git
+
+# 2. Copy the skill so that ~/.claude/skills/tenable-exposure-impact-simulator/SKILL.md exists
+mkdir -p ~/.claude/skills/tenable-exposure-impact-simulator
+cp -r tenable-exposure-impact-simulator/tenable-exposure-impact-simulator/* ~/.claude/skills/tenable-exposure-impact-simulator/
+
+# 3. Verify
+ls ~/.claude/skills/tenable-exposure-impact-simulator/SKILL.md
+```
+
+Restart Claude Code (or start a new session) so it picks up the new skill.
 
 ### Usage
 
@@ -250,10 +258,16 @@ The skill connects to Tenable via:
 - Automatic authentication
 
 **Method 2: Direct API**
+
+Generate API keys in Tenable: Settings → My Account → API Keys → Generate API Key (permissions: Read Assets, Read Vulnerabilities). Then set environment variables (add to `~/.bashrc` or `~/.zshrc` and reload your shell):
+
 ```bash
 export TENABLE_ACCESS_KEY="your-access-key"
 export TENABLE_SECRET_KEY="your-secret-key"
+export TENABLE_URL="https://cloud.tenable.com"
 ```
+
+This skill requires Tenable One (Exposure Management) with Asset Exposure Scores (AES) enabled. If AES is not available, contact your Tenable account team.
 
 ### Required API Endpoints
 
